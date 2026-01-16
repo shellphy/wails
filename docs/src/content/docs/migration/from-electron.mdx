@@ -1,0 +1,28 @@
+---
+title: Migrating from Electron
+description: Guidance for moving an Electron app to Wails v3
+sidebar:
+  order: 2
+---
+
+This guide highlights common migration considerations when moving from an Electron app to Wails v3.
+
+## What changes
+
+- **Backend runtime**: Node.js main process → **Go application**.
+- **IPC**: Electron IPC → **Wails bindings/events**.
+- **Packaging**: Electron builders → **Wails build + platform packaging**.
+
+## Typical migration plan
+
+- Keep your existing frontend (React/Vue/etc.) and wire it into Wails.
+- Move business logic out of the Electron main process into Go services.
+- Replace IPC calls with bindings (request/response) and events (pub/sub).
+
+## Next steps
+
+- [Why Wails?](/quick-start/why-wails)
+- [Your First App](/quick-start/first-app)
+- [Migrating from v2 to v3](/migration/v2-to-v3)
+- [Bindings: Methods](/features/bindings/methods)
+

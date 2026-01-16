@@ -1,0 +1,35 @@
+---
+title: Application Events
+description: Listen to application lifecycle and system-level events
+sidebar:
+  order: 2
+---
+
+Application events are **system-level** events emitted by Wails (app lifecycle, OS theme changes, file-open events, etc.).
+They are distinct from custom pub/sub events you define yourself.
+
+## Listening to application events (Go)
+
+```go
+import (
+  "github.com/wailsapp/wails/v3/pkg/application"
+  "github.com/wailsapp/wails/v3/pkg/events"
+)
+
+app.Event.OnApplicationEvent(events.Common.ApplicationStarted, func(e *application.ApplicationEvent) {
+  app.Logger.Info("Application started")
+})
+```
+
+## Common use cases
+
+- React to **startup/shutdown** lifecycle.
+- Handle **OS theme changes**.
+- Handle **file association open** events (see: [File Associations](/guides/distribution/file-associations)).
+
+## Next steps
+
+- [Event System](/features/events/system)
+- [Window Events](/features/events/window)
+- [Events Reference](/guides/events-reference)
+

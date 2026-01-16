@@ -1,0 +1,39 @@
+---
+title: Custom Events
+description: Define your own application events (pub/sub) between Go and JavaScript
+sidebar:
+  order: 4
+---
+
+Custom events are **your app’s pub/sub messages**. You choose the event names and payload shape.
+
+## Emit from Go
+
+```go
+app.Event.Emit("order-created", map[string]any{
+  "id":  "ord_123",
+  "sum": 42,
+})
+```
+
+## Listen in JavaScript
+
+```js
+import { OnEvent } from "@wailsio/runtime"
+
+OnEvent("order-created", (data) => {
+  console.log("created:", data)
+})
+```
+
+## Best practices
+
+- Use **kebab-case** event names (e.g. `user-logged-in`).
+- Keep payloads **small**; for large data use bindings/services.
+- Unsubscribe when appropriate to avoid leaks.
+
+## Next steps
+
+- [Event System](/features/events/system)
+- [Events Reference](/guides/events-reference)
+

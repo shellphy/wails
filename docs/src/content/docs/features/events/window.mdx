@@ -1,0 +1,39 @@
+---
+title: Window Events
+description: Listen to window lifecycle and interaction events
+sidebar:
+  order: 3
+---
+
+Window events are emitted by a specific window (focus/blur, resize, close requests, etc.).
+
+## Listening to window events (Go)
+
+```go
+import (
+  "github.com/wailsapp/wails/v3/pkg/application"
+  "github.com/wailsapp/wails/v3/pkg/events"
+)
+
+win := app.Window.New(application.WebviewWindowOptions{
+  Title:  "My App",
+  Width:  900,
+  Height: 700,
+})
+
+win.On(events.Common.WindowFocus, func(e *application.WindowEvent) {
+  app.Logger.Info("Window focused")
+})
+```
+
+## Common patterns
+
+- **Prevent accidental close** by canceling close events and asking for confirmation.
+- **Persist window state** (size/position) on close and restore on startup.
+
+## Next steps
+
+- [Event System](/features/events/system)
+- [Application Events](/features/events/application)
+- [Windows: Events](/features/windows/events)
+

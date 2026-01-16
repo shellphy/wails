@@ -1,0 +1,47 @@
+---
+title: Database Integration
+description: Patterns for using databases (SQLite/PostgreSQL/etc.) in Wails v3
+---
+
+This guide shows practical patterns for integrating a database into a Wails v3 app.
+
+## Choose an approach
+
+In most apps you’ll use one of these:
+
+- **SQLite (embedded)**: simplest deployment; great default for desktop apps.
+- **PostgreSQL/MySQL (external)**: when you need a shared server or multi-device access.
+
+## Keep DB access in Go services
+
+Treat the database layer as backend code:
+
+- Put DB connections, queries, and migrations in Go.
+- Expose only the operations your UI needs via bound methods or service endpoints.
+
+## Basic pattern (SQLite)
+
+```go
+// Open once at startup, reuse connection pool, close on shutdown.
+db, err := sql.Open("sqlite3", "file:app.db?_fk=1")
+if err != nil {
+    return err
+}
+db.SetMaxOpenConns(1) // common for SQLite
+```
+
+## Migrations
+
+Use migrations (instead of ad-hoc schema creation) so schema changes are repeatable.
+
+## Avoid blocking the UI
+
+- Keep long-running queries off hot paths.
+- Use paging for large lists.
+- Consider background goroutines + events for progress updates.
+
+## Next steps
+
+- [REST APIs](/guides/patterns/rest-api)
+- [Using Gin for Services](/guides/patterns/gin-services)
+

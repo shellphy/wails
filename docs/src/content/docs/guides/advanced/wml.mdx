@@ -1,0 +1,30 @@
+---
+title: WML (Wails Markup)
+description: Using Wails Markup Language (WML) to call runtime actions from HTML
+---
+
+WML (Wails Markup Language) is an experimental feature that lets you trigger common runtime actions using declarative HTML attributes (similar in spirit to htmx).
+
+## Quick example
+
+```html
+<button wml-event="button-pressed">Press me!</button>
+<button wml-event="delete-things" wml-confirm="Are you sure?">
+  Delete all the things!
+</button>
+<button wml-window="Close" wml-confirm="Are you sure?">
+  Close the Window?
+</button>
+```
+
+## Supported attributes
+
+The authoritative list and details are in the runtime reference:
+
+- [Frontend Runtime: WML](/reference/frontend-runtime#wml-wails-markup-language)
+
+## Notes
+
+- WML is currently **experimental**. Expect iteration and changes.
+- Prefer keeping complex UI logic in your normal frontend framework; WML is best for simple actions.
+

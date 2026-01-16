@@ -1,0 +1,33 @@
+---
+title: Development Workflow
+description: A fast iteration loop for Wails v3 development
+---
+
+This guide outlines a simple workflow that keeps your Go backend, frontend, and build assets in sync.
+
+## The day-to-day loop
+
+- **Start dev**: run your development command (commonly `wails3 dev`) to get live reload / rebuild behaviour.
+- **Iterate**: edit Go code and frontend code; keep UI changes and API/service changes in small steps.
+- **Build periodically**: run a production build to catch asset / packaging issues early.
+
+## Keep build assets up to date
+
+Some changes require refreshing generated assets (icons, platform project files, etc.). If you change build configuration or assets, update them before packaging.
+
+See:
+
+- [Build Customization](/guides/build/customization)
+- [Building Applications](/guides/build/building)
+
+## Common checkpoints
+
+- **Bindings**: after changing service method signatures, regenerate/refresh bindings as needed (depending on your setup).
+- **Packaging**: validate packaging settings early if you need installers, signing, or file associations.
+
+## Next steps
+
+- [Debugging](/guides/dev/debugging)
+- [Testing](/guides/dev/testing)
+- [Cross-Platform Builds](/guides/build/cross-platform)
+

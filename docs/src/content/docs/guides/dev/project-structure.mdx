@@ -1,0 +1,34 @@
+---
+title: Project Structure
+description: Recommended project layout for Wails v3 applications
+---
+
+This guide describes a practical, maintainable project structure for Wails v3 apps and how the pieces fit together.
+
+## Typical layout
+
+Most Wails projects end up with these top-level areas:
+
+- **Go backend**: your `main.go` plus any packages for app logic, services, and integration code.
+- **Frontend**: a regular web app (Vite/React/Vue/Svelte/etc.) that builds static assets.
+- **Build assets**: platform packaging config, icons, and installer metadata.
+
+## Suggested directories
+
+These names vary by template, but the responsibilities are the important part:
+
+- **`frontend/`**: your web UI and its build output (often `dist/`).
+- **`internal/`** (or `app/`): your Go application code (services, business logic, helpers).
+- **`build/`**: packaging config (like `config.yml`), icons, entitlements, installer scripts.
+
+## Keep responsibilities separate
+
+- **UI vs. API**: keep HTTP handlers / bound methods / service handlers in Go, and keep UI state + rendering in the frontend.
+- **Platform-specific code**: isolate OS-specific code (Windows/macOS/Linux) into dedicated packages/files so it’s easy to reason about.
+
+## Next steps
+
+- [Your First App](/quick-start/first-app) - End-to-end walkthrough
+- [Building Applications](/guides/build/building) - How builds and assets work
+- [Development Workflow](/guides/dev/workflow) - Day-to-day iteration loop
+

@@ -1,0 +1,46 @@
+---
+title: REST APIs
+description: Patterns for building internal HTTP APIs in Wails v3 apps
+---
+
+This guide covers common ways to expose HTTP endpoints from your Wails app and call them from the frontend.
+
+## Option A: Use Gin
+
+If you want full-featured routing/middleware, Gin is a great fit:
+
+- [Using Gin for Routing](/guides/patterns/gin-routing)
+- [Using Gin for Services](/guides/patterns/gin-services)
+
+## Option B: net/http handlers
+
+For simple APIs you can use `net/http` directly:
+
+```go
+mux := http.NewServeMux()
+mux.HandleFunc("/api/health", func(w http.ResponseWriter, r *http.Request) {
+    w.Header().Set("Content-Type", "application/json")
+    w.Write([]byte(`{"ok":true}`))
+})
+```
+
+## Calling from the frontend
+
+From the frontend, call your internal endpoints with `fetch()`:
+
+```js
+const res = await fetch("/api/health")
+const data = await res.json()
+console.log(data)
+```
+
+## Security notes
+
+- Treat all input as untrusted; validate on the Go side.
+- Avoid exposing admin/debug endpoints in production builds.
+
+## Next steps
+
+- [Database Integration](/guides/patterns/database)
+- [Security Best Practices](/guides/advanced/security)
+

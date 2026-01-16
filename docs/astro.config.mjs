@@ -66,6 +66,7 @@ export default defineConfig({
       },
       plugins: [
         starlightImageZoom(),
+        starlightLinksValidator(),
         starlightBlog({
           title: "Wails Blog",
           authors: authors,

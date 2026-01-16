@@ -1,0 +1,32 @@
+---
+title: Debugging
+description: Debugging your Wails v3 app (Go, frontend, and platform)
+---
+
+This guide collects the most common debugging techniques for Wails apps.
+
+## Debugging Go code
+
+- **Log first**: use structured logging around boundaries (startup, service calls, HTTP handlers, window events).
+- **Debugger**: run your app under a Go debugger (Delve) from your IDE, set breakpoints in services/handlers, and inspect goroutines.
+
+If you’re contributing to Wails itself or working close to the runtime/platform layer, see:
+
+- [Contributing Setup: Debugging](/contributing/setup#debugging)
+
+## Debugging frontend code
+
+- **DevTools**: open the webview’s devtools to inspect DOM, console logs, network requests, and performance.
+- **Runtime APIs**: if you’re using runtime features, consult the reference to confirm names/behaviour.
+
+## Debugging common integration issues
+
+- **Events**: verify event names and payload shapes; see [Events Reference](/guides/events-reference).
+- **Bindings/services**: confirm that your service is registered and that method names/types match what the frontend calls.
+- **Asset routing**: if a page 404s, confirm the generated docs route or your app asset handler routing setup.
+
+## Next steps
+
+- [Testing](/guides/dev/testing)
+- [Performance](/guides/performance)
+
